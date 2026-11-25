@@ -9,7 +9,10 @@ const gate=$('accessGate'), learning=$('learningShell');
 function authBrand(){return '<div class="brand"><span class="mark">AI</span><div><strong>AI Master</strong><small>Formação em Inteligência Artificial</small></div></div>'}
 function displayGate(html){learning.hidden=true;gate.hidden=false;gate.innerHTML=`<div class="panel stack access-card">${authBrand()}${html}</div>`;window.scrollTo(0,0)}
 function msg(s){const el=$('accessMessage');if(el)el.textContent=s}
-function errorText(err){return err?.message||String(err||'Erro inesperado')}
+const AUTH_MSG={'Email not confirmed':'E-mail ainda não confirmado. Abra o link enviado ao seu e-mail (veja também o spam).','Invalid login credentials':'E-mail ou senha incorretos.','User already registered':'Este e-mail já está cadastrado. Use Entrar ou Esqueci minha senha.','Password should be at least 8 characters':'A senha deve ter pelo menos 8 caracteres.','Email rate limit exceeded':'Muitos e-mails enviados em pouco tempo. Tente novamente mais tarde.'};
+let lastEmail='';
+function errorText(err){const m=err?.message||String(err||'Erro inesperado');for(const k in AUTH_MSG)if(m.toLowerCase().includes(k.toLowerCase()))return AUTH_MSG[k];return m}
+async function resendConfirmation(){try{const {error}=await sb.auth.resend({type:'signup',email:lastEmail,options:{emailRedirectTo:redirectUrl()}});if(error)throw error;msg('E-mail de confirmação reenviado para '+lastEmail+'.')}catch(err){msg(errorText(err))}}
 function authScreen(kind='login',message=''){
  mode='auth'; const signup=kind==='signup', forgot=kind==='forgot', reset=kind==='reset';
  displayGate(`<h1>${reset?'Nova senha':forgot?'Recuperar senha':signup?'Crie sua conta':'Bem-vindo ao AI Master'}</h1><p>${reset?'Escolha uma senha nova.':forgot?'Enviaremos um link para seu e-mail.':signup?'Crie sua conta para solicitar acesso à formação.':'Entre para continuar de onde parou.'}</p>
@@ -25,7 +28,7 @@ function authScreen(kind='login',message=''){
  else if(forgot){res=await sb.auth.resetPasswordForEmail(email,{redirectTo:redirectUrl()});if(res.error)throw res.error;msg('Se a conta existir, você receberá um link de recuperação.');}
  else if(signup){res=await sb.auth.signUp({email,password,options:{emailRedirectTo:redirectUrl(),data:{full_name:fullName}}});if(res.error)throw res.error;if(!res.data.session)authScreen('login','Confira seu e-mail para confirmar o cadastro. Depois, entre e aguarde aprovação.');}
  else{res=await sb.auth.signInWithPassword({email,password});if(res.error)throw res.error;}
- }catch(err){msg(errorText(err))}finally{authBusy=false;b.disabled=false}};
+ }catch(err){msg(errorText(err));if(/email not confirmed/i.test(err?.message||'')){lastEmail=f.elements.email?.value.trim()||'';const el=$('accessMessage');if(el&&lastEmail){const rb=document.createElement('button');rb.type='button';rb.className='subtle';rb.textContent='Reenviar e-mail de confirmação';rb.onclick=resendConfirmation;el.after(rb)}}}finally{authBusy=false;b.disabled=false}};
 }
 function redirectUrl(){return location.origin+location.pathname}
 async function googleLogin(){try{const {error}=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirectUrl()}});if(error)throw error}catch(err){msg(errorText(err))}}
