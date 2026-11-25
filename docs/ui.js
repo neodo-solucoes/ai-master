@@ -47,7 +47,6 @@
       if(/\s→\s*$/.test(t))b.innerHTML=t.replace(/\s→\s*$/,' <span class="arrow" aria-hidden="true">→</span>');
       else if(/^\s*←\s/.test(t))b.innerHTML=t.replace(/^\s*←\s/,'<span class="arrow-l" aria-hidden="true">←</span> ');
     });
-    root.querySelectorAll('.panel,.bookcard').forEach(c=>c.classList.add('spot'));
   }
   const app=document.getElementById('app');
   new MutationObserver(()=>{
@@ -58,12 +57,6 @@
   }).observe(app,{childList:true});
   if(gate)new MutationObserver(()=>decorate(gate)).observe(gate,{childList:true,subtree:true});
   document.getElementById('nav')&&decorate(document.getElementById('nav'));
-
-  // Luz que segue o mouse
-  document.addEventListener('pointermove',ev=>{
-    const c=ev.target.closest&&ev.target.closest('.spot');if(!c)return;
-    const r=c.getBoundingClientRect();c.style.setProperty('--mx',(ev.clientX-r.left)+'px');c.style.setProperty('--my',(ev.clientY-r.top)+'px');
-  },{passive:true});
 
   // Números das métricas sobem ao abrir a tela
   function countUp(root){
