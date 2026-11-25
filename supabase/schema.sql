@@ -8,6 +8,7 @@ grant usage on schema ai_master_private to authenticated;
 create table public.ai_members (
   user_id uuid primary key references auth.users(id) on delete cascade,
   email text not null default '',
+  full_name text not null default '' check (length(full_name)<=120),
   approved boolean not null default false,
   is_admin boolean not null default false,
   created_at timestamptz not null default now()
@@ -59,7 +60,9 @@ create function ai_master_private.can_read_object(p text) returns boolean langua
 $$;
 create function ai_master_private.new_member() returns trigger language plpgsql security definer set search_path='' as $$
 begin
- insert into public.ai_members(user_id,email) values(new.id,coalesce(new.email,'')) on conflict(user_id) do nothing;
+ insert into public.ai_members(user_id,email,full_name)
+ values(new.id,coalesce(new.email,''),left(trim(coalesce(new.raw_user_meta_data->>'full_name',new.raw_user_meta_data->>'name','')),120))
+ on conflict(user_id) do nothing;
  return new;
 end; $$;
 create trigger ai_master_new_member after insert on auth.users for each row execute function ai_master_private.new_member();
