@@ -105,7 +105,7 @@ grant execute on function public.ai_save_progress(jsonb,integer) to authenticate
 
 -- Bucket privado: arquivos nunca são servidos por uma URL pública do GitHub.
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)
-values('ai-master-library','ai-master-library',false,52428800,array['application/pdf','application/epub+zip','application/octet-stream']);
+values('ai-master-library','ai-master-library',false,52428800,array['application/pdf','application/epub+zip']);
 create policy ai_library_read on storage.objects for select to authenticated using (bucket_id='ai-master-library' and ai_master_private.can_read_object(name));
 create policy ai_library_insert on storage.objects for insert to authenticated with check (bucket_id='ai-master-library' and (select ai_master_private.is_admin()));
 create policy ai_library_update on storage.objects for update to authenticated using (bucket_id='ai-master-library' and (select ai_master_private.is_admin())) with check (bucket_id='ai-master-library' and (select ai_master_private.is_admin()));

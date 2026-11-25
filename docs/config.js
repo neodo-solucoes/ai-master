@@ -1,7 +1,7 @@
-// Preencha com os dados públicos do seu projeto Supabase. Nunca use service_role ou secret key.
+// Dados públicos do projeto Supabase. Nunca use service_role ou secret key.
 window.AI_MASTER_CONFIG = {
-  supabaseUrl: '', // https://SEU-PROJETO.supabase.co
-  publishableKey: '', // sb_publishable_... (ou anon key legada)
+  supabaseUrl: 'https://wuapplhifksoanrqbvqx.supabase.co',
+  publishableKey: 'sb_publishable_RbzCM_59lWgzyvkIEwcdoA_-lV2t7bR',
   enableGoogleLogin: false, // ative também o provedor no painel do Supabase
-  allowLocalDemo: true // após configurar, o acesso é sempre autenticado
+  allowLocalDemo: false // acesso sempre autenticado
 };
