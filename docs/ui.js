@@ -48,9 +48,15 @@
       else if(/^\s*←\s/.test(t))b.innerHTML=t.replace(/^\s*←\s/,'<span class="arrow-l" aria-hidden="true">←</span> ');
     });
   }
+
+  // Ícones das tecnologias de cada nível (lista da trilha)
+  const LEVEL_ICONS=[['python','git','linux','jupyter','numpy'],['pandas','numpy','postgresql','jupyter'],['pytorch','tensorflow','opencv'],['openai','huggingface','langchain','anthropic'],['fastapi','docker','kubernetes','aws','postgresql'],['opencv','pytorch','huggingface','streamlit'],[]];
+  function levelIcons(root){root.querySelectorAll('.level').forEach(row=>{if(row.querySelector('.lvl-icons'))return;const n=parseInt(row.querySelector('.num')?.textContent,10);const list=LEVEL_ICONS[n];if(!list||!list.length)return;
+    const box=document.createElement('span');box.className='lvl-icons';box.setAttribute('aria-hidden','true');box.innerHTML=list.map(i=>`<img src="brand/icons/${i}.svg" alt="" loading="lazy">`).join('');
+    const txt=row.children[1];if(txt)txt.append(box)})}
   const app=document.getElementById('app');
   new MutationObserver(()=>{
-    decorate(app);
+    decorate(app);levelIcons(app);
     const key=(typeof view!=='undefined'?view:'')+'|'+(typeof arg!=='undefined'?arg:'');
     if(key!==lastKey&&!reduce.matches){lastKey=key;app.classList.remove('view-enter');void app.offsetWidth;app.classList.add('view-enter');countUp(app)}
     else lastKey=key;

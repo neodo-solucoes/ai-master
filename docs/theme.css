@@ -222,3 +222,7 @@ html[data-theme=light] .access-gate{background:radial-gradient(700px 420px at 50
 .access-card{border-radius:28px!important;border:1px solid var(--line)!important;background:color-mix(in srgb,var(--bg) 88%,transparent)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .gateproduct{border-left-color:var(--amber)}
 .auth-switch button,.forgot{color:var(--accent)}
+.lvl-icons{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.lvl-icons img{width:22px;height:22px;padding:3px;border-radius:7px;background:#fff;border:1px solid var(--line);object-fit:contain;transition:transform .2s var(--ease)}
+.level:hover .lvl-icons img{transform:translateY(-2px)}
+.level:hover .lvl-icons img:nth-child(2){transition-delay:.03s}.level:hover .lvl-icons img:nth-child(3){transition-delay:.06s}.level:hover .lvl-icons img:nth-child(4){transition-delay:.09s}.level:hover .lvl-icons img:nth-child(5){transition-delay:.12s}
