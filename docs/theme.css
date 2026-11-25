@@ -156,3 +156,69 @@ html:not([data-theme=light]) .on-dark{display:block}
 .neodo-sign span{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 .neodo-sign img{width:150px;height:auto;opacity:.9;transition:opacity var(--t) var(--ease)}
 .neodo-sign:hover img{opacity:1}
+
+/* ===== Visual NEODO (linguagem editorial: fundo quente, cartões macios, pílulas, um momento de cor) ===== */
+h1{font-weight:700;letter-spacing:-.045em;font-size:clamp(30px,3.4vw,44px)}
+h2{font-weight:650;letter-spacing:-.03em}
+.intro p{font-size:16px}
+aside{border-right:1px solid var(--line)}
+header{border-bottom:1px solid var(--line)}
+
+/* Botões em pílula */
+button,.access-card button{border-radius:999px!important}
+.primary{background:var(--button);color:var(--ink);box-shadow:none;border:0}
+.primary:hover:not(:disabled){filter:none;transform:translateY(-1px);box-shadow:0 10px 24px -12px color-mix(in srgb,var(--button) 80%,transparent);background:color-mix(in srgb,var(--button) 88%,#fff)}
+html[data-theme=light] .primary:hover:not(:disabled){background:#003b8f}
+button:not(.primary):not(.google-btn):not(.back):not(.forgot):not(.theme-toggle){background:var(--bg)}
+.nav button{border-radius:12px!important}
+.theme-toggle{border-radius:999px!important}
+
+/* Cartões macios: preenchimento suave, sem borda pesada, cantos grandes */
+.panel{border-radius:24px;border-color:transparent;background:var(--card);box-shadow:none}
+.panel .panel,.bookcard{border-radius:18px;background:var(--bg);border:1px solid var(--line)}
+.grid>.panel:hover,.bookcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px -26px rgb(0 20 60/.35);border-color:var(--line)}
+.note{border-radius:14px}
+input,select,textarea{border-radius:14px;background:var(--bg)}
+
+/* Cartão de próximo passo: o momento de cor da marca */
+.hero{animation:none;border:0!important;color:#fff;overflow:hidden;
+  background:radial-gradient(520px 260px at 92% 120%,rgb(255 187 1/.55),transparent 65%),radial-gradient(600px 300px at 0% -20%,rgb(114 220 231/.35),transparent 60%),linear-gradient(120deg,#001a44 0%,#002760 45%,#0a3f9c 100%)!important;
+  box-shadow:0 30px 60px -34px rgb(0 39 96/.7)!important}
+.hero::after{display:none}
+.hero h2{color:#fff}.hero p{color:rgb(255 255 255/.78)}.hero .eyebrow{color:#FFBB01}
+.hero .primary{background:#FFBB01!important;color:#1c1500!important}
+.hero .primary:hover:not(:disabled){background:#ffc933!important;box-shadow:0 12px 26px -12px rgb(255 187 1/.8)}
+
+/* Métricas com ícone/realce colorido */
+.grid>.panel{padding:24px}
+.grid>.panel:nth-child(1) .metric{color:var(--text)}
+.grid>.panel::after{content:"";position:absolute;top:22px;right:22px;width:10px;height:10px;border-radius:99px;background:var(--navy)}
+.grid>.panel:nth-child(2)::after{background:var(--amber)}
+.grid>.panel:nth-child(3)::after{background:var(--cyan)}
+html:not([data-theme=light]) .grid>.panel:nth-child(1)::after{background:#4d7fd6}
+
+/* Níveis com cores alternadas da marca */
+.num{border:0!important;background:color-mix(in srgb,var(--navy) 14%,transparent);color:var(--navy);font-weight:600}
+html:not([data-theme=light]) .num{background:color-mix(in srgb,#4d7fd6 22%,transparent);color:#a9c4f5}
+.level:nth-child(3n+2) .num{background:rgb(255 187 1/.2);color:#8a6400}
+html:not([data-theme=light]) .level:nth-child(3n+2) .num{color:#FFBB01}
+.level:nth-child(3n) .num{background:rgb(114 220 231/.22);color:#0a6a76}
+html:not([data-theme=light]) .level:nth-child(3n) .num{color:#72dce7}
+.level:hover .num,.module:hover .num{background:var(--navy)!important;color:#fff!important}
+html:not([data-theme=light]) .level:hover .num,html:not([data-theme=light]) .module:hover .num{background:#FFBB01!important;color:#1c1500!important}
+.level:hover,.module:hover{background:var(--hover)}
+.bar{background:color-mix(in srgb,var(--text) 10%,transparent)}
+.bar span{background:linear-gradient(90deg,var(--navy),#2d6be0 60%,var(--amber))}
+html:not([data-theme=light]) .bar span{background:linear-gradient(90deg,#4d7fd6,var(--amber))}
+
+/* Menu ativo */
+.nav button[aria-current=page]{background:var(--card);color:var(--text)}
+.nav button[aria-current=page]::before{background:var(--amber)}
+.nav button[aria-current=page] svg{color:var(--accent)}
+
+/* Login com brilho de marca ao fundo */
+.access-gate{background:radial-gradient(700px 420px at 50% 115%,rgb(255 187 1/.38),transparent 70%),radial-gradient(800px 480px at 10% -10%,rgb(0 39 96/.55),transparent 65%),radial-gradient(600px 400px at 95% 10%,rgb(114 220 231/.28),transparent 65%),var(--bg)}
+html[data-theme=light] .access-gate{background:radial-gradient(700px 420px at 50% 115%,rgb(255 187 1/.45),transparent 70%),radial-gradient(800px 480px at 10% -10%,rgb(0 60 150/.28),transparent 65%),radial-gradient(600px 400px at 95% 10%,rgb(114 220 231/.35),transparent 65%),var(--bg)}
+.access-card{border-radius:28px!important;border:1px solid var(--line)!important;background:color-mix(in srgb,var(--bg) 88%,transparent)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.gateproduct{border-left-color:var(--amber)}
+.auth-switch button,.forgot{color:var(--accent)}
