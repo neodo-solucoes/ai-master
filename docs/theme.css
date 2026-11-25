@@ -233,3 +233,10 @@ html:not([data-theme=light]) .bico.g{color:#1c1500;background:var(--amber)}
 .hero .bico{box-shadow:none}
 button.has-ico:hover .bico{transform:rotate(-8deg) scale(1.08)}
 .module{cursor:pointer}
+
+/* Ícone do tema de cada nível */
+.lvl-title{display:inline-flex;align-items:center;gap:8px}
+.lvl-theme{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;flex:none;background:color-mix(in srgb,var(--navy) 12%,transparent);color:var(--navy)}
+html:not([data-theme=light]) .lvl-theme{background:rgb(255 187 1/.14);color:#FFBB01}
+.lvl-theme svg{width:18px;height:18px}
+.bico.g{stroke-width:1.8}

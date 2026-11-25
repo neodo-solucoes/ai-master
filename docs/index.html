@@ -111,10 +111,24 @@ section{padding:96px 0;position:relative}
 .bub:nth-child(odd){animation-delay:-1.6s}.bub:nth-child(3n){animation-delay:-.8s}
 .bub:hover{transform:scale(1.1);background:rgb(255 255 255/.32)}
 .bub.solid{background:#fff}
-.bub.core{width:124px;height:124px;background:#fff;box-shadow:0 20px 50px -12px rgb(0 0 0/.45)}
-.bub.core img{width:64px;height:64px}
-.bub .tip{position:absolute;bottom:-30px;font-size:12px;color:#fff;white-space:nowrap;opacity:0;transform:translateY(-4px);transition:.2s}
-.bub:hover .tip{opacity:1;transform:none}
+button.bub{cursor:pointer;padding:0;font:inherit}
+.bub:focus-visible{outline:3px solid #FFBB01;outline-offset:3px}
+.bub[aria-expanded=true]{transform:scale(1.12);box-shadow:0 0 0 4px #FFBB01,0 18px 40px -14px rgb(0 0 0/.5);animation-play-state:paused}
+.cloudhint{text-align:center;color:rgb(255 255 255/.7);font-size:13px;margin-top:26px}
+.tpop{position:absolute;z-index:5;width:min(320px,calc(100% - 32px));background:#fff;color:#16181d;border-radius:18px;padding:18px 18px 16px;box-shadow:0 30px 70px -24px rgb(0 0 0/.6);animation:pop .22s var(--ease) both}
+.tpop::before{content:"";position:absolute;top:-7px;left:var(--ax,50%);width:14px;height:14px;background:#fff;transform:translateX(-50%) rotate(45deg);border-radius:3px}
+.tpop .th{display:flex;align-items:center;gap:12px;margin-bottom:8px}.tpop .th img{width:34px;height:34px;object-fit:contain}
+.tpop h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.tpop p{font-size:14px;line-height:1.5;color:#4a4e57}
+.tpop a{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;font-weight:650;color:#002760;text-decoration:none}.tpop a svg{width:18px;height:18px}
+.tpop a:hover{text-decoration:underline}
+.tpop .x{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:0;background:#f1efe9;color:#333;font-size:16px;cursor:pointer;line-height:1}
+.tpop.up::before{top:auto;bottom:-7px}
+@keyframes pop{from{opacity:0;transform:translateY(-6px) scale(.97)}}
+.n .ticon{width:24px;height:24px}
+.step .lvl,.lv .lvl{font:600 11px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.lv .lvl{color:#6a6e76;margin:0}
+.lv .n .ticon{width:26px;height:26px}
 @keyframes bob{50%{translate:0 -6px}}
 
 /* Processo: trilha de 7 níveis */
@@ -196,7 +210,7 @@ footer small{display:block;width:100%;font-size:12px}
 
 /* Responsivo */
 @media(max-width:1024px){.nums{grid-template-columns:repeat(2,1fr)}.hero .wrap{grid-template-columns:1fr}.art{height:440px}.steps{grid-template-columns:repeat(4,1fr)}.growth{grid-template-columns:1fr}.shots{grid-template-columns:1fr}}
-@media(max-width:760px){.nav ul{display:none}.method{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}.bub{width:64px;height:64px}.bub img{width:30px;height:30px}.bub.core{width:88px;height:88px}.bub.core img{width:46px;height:46px}.row{gap:10px}.cloud{gap:10px}.row .bub:nth-child(n+6){display:none}
+@media(max-width:760px){.nav ul{display:none}.method{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}.bub{width:64px;height:64px}.bub img{width:30px;height:30px}.row{gap:10px}.cloud{gap:10px}.cloud{display:flex;flex-wrap:wrap;justify-content:center}.row{display:contents}
   section{padding:64px 0}.flow{padding:24px}.ring{width:210px;height:270px}.lv{padding:18px}.close{padding:56px 24px}.art .note{width:230px;left:16px;top:16px}.art{height:400px}.hero{padding:40px 0 56px}.brand small{display:none}.nav .btn--primary{display:none}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.chart .bars rect{transform:none}.chart .curve{stroke-dashoffset:0}}
 </style>
@@ -231,33 +245,9 @@ footer small{display:block;width:100%;font-size:12px}
 <section id="tecnologias" aria-labelledby="h-tec"><div class="wrap">
   <div class="tech">
     <div class="head center"><span class="eyebrow">Tecnologias</span><h2 id="h-tec">As ferramentas que você vai dominar</h2><p>Os livros da trilha levam você às ferramentas que o mercado de IA usa todos os dias.</p></div>
-    <div class="cloud">
-      <div class="row">
-        <span class="bub solid"><img src="brand/icons/python.svg" alt="Python"><span class="tip">Python</span></span>
-        <span class="bub solid"><img src="brand/icons/jupyter.svg" alt="Jupyter"><span class="tip">Jupyter</span></span>
-        <span class="bub solid"><img src="brand/icons/numpy.svg" alt="NumPy"><span class="tip">NumPy</span></span>
-        <span class="bub solid"><img src="brand/icons/pandas.svg" alt="pandas"><span class="tip">pandas</span></span>
-        <span class="bub solid"><img src="brand/icons/git.svg" alt="Git"><span class="tip">Git</span></span>
-        <span class="bub solid"><img src="brand/icons/linux.svg" alt="Linux"><span class="tip">Linux</span></span>
-      </div>
-      <div class="row">
-        <span class="bub solid"><img src="brand/icons/pytorch.svg" alt="PyTorch"><span class="tip">PyTorch</span></span>
-        <span class="bub solid"><img src="brand/icons/tensorflow.svg" alt="TensorFlow"><span class="tip">TensorFlow</span></span>
-        <span class="bub solid"><img src="brand/icons/opencv.svg" alt="OpenCV"><span class="tip">OpenCV</span></span>
-        <span class="bub core"><img src="brand/neodo-simbolo.svg" alt="NEODO"></span>
-        <span class="bub solid"><img src="brand/icons/huggingface.svg" alt="Hugging Face"><span class="tip">Hugging Face</span></span>
-        <span class="bub solid"><img src="brand/icons/langchain.svg" alt="LangChain"><span class="tip">LangChain</span></span>
-        <span class="bub solid"><img src="brand/icons/openai.svg" alt="OpenAI"><span class="tip">OpenAI API</span></span>
-      </div>
-      <div class="row">
-        <span class="bub solid"><img src="brand/icons/fastapi.svg" alt="FastAPI"><span class="tip">FastAPI</span></span>
-        <span class="bub solid"><img src="brand/icons/postgresql.svg" alt="PostgreSQL"><span class="tip">PostgreSQL</span></span>
-        <span class="bub solid"><img src="brand/icons/docker.svg" alt="Docker"><span class="tip">Docker</span></span>
-        <span class="bub solid"><img src="brand/icons/kubernetes.svg" alt="Kubernetes"><span class="tip">Kubernetes</span></span>
-        <span class="bub solid"><img src="brand/icons/aws.svg" alt="AWS"><span class="tip">AWS</span></span>
-        <span class="bub solid"><img src="brand/icons/github.svg" alt="GitHub"><span class="tip">GitHub</span></span>
-      </div>
-    </div>
+    <div class="cloud" id="cloud"></div>
+    <p class="cloudhint">Toque em um ícone para ver o que é e em que nível aparece.</p>
+    <div class="tpop" id="tpop" role="dialog" aria-modal="false" aria-labelledby="tpop-h" hidden></div>
   </div>
 </div></section>
 
@@ -265,13 +255,13 @@ footer small{display:block;width:100%;font-size:12px}
   <div class="head"><span class="eyebrow">Trilha</span><h2 id="h-tri">Sete níveis, um caminho claro</h2><p>Cada nível tem módulos com leitura orientada, fichamento e um projeto aplicado. Você só avança quando conclui as leituras previstas.</p></div>
   <div class="flow">
     <div class="steps">
-      <a class="step" href="app.html#nivel-0"><span class="n">0</span><h3>Computação, Python e matemática</h3><p>Git, Python, algoritmos, álgebra linear, cálculo e estatística.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
-      <a class="step" href="app.html#nivel-1"><span class="n">1</span><h3>Dados e ML clássico</h3><p>SQL, análise exploratória, testes A/B e modelos supervisionados.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
-      <a class="step" href="app.html#nivel-2"><span class="n">2</span><h3>Deep Learning</h3><p>Redes neurais, PyTorch, visão computacional e Transformers.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
-      <a class="step" href="app.html#nivel-3"><span class="n">3</span><h3>LLMs, RAG e agentes</h3><p>Prompts, embeddings, busca semântica, agentes e MCP.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
-      <a class="step" href="app.html#nivel-4"><span class="n">4</span><h3>Engenharia e MLOps</h3><p>APIs, bancos de dados, Docker, CI/CD, cloud e monitoramento.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
-      <a class="step" href="app.html#nivel-5"><span class="n">5</span><h3>Especialização</h3><p>Visão, NLP, séries temporais, Edge AI ou IA industrial.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
-      <a class="step" href="app.html#nivel-6"><span class="n">6</span><h3>Leitura contínua</h3><p>Aprofundamento com obras avançadas, sem prazo final.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-0"><span class="n" data-t="0"></span><span class="lvl">Nível 0</span><h3>Computação, Python e matemática</h3><p>Git, Python, algoritmos, álgebra linear, cálculo e estatística.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-1"><span class="n" data-t="1"></span><span class="lvl">Nível 1</span><h3>Dados e ML clássico</h3><p>SQL, análise exploratória, testes A/B e modelos supervisionados.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-2"><span class="n" data-t="2"></span><span class="lvl">Nível 2</span><h3>Deep Learning</h3><p>Redes neurais, PyTorch, visão computacional e Transformers.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-3"><span class="n" data-t="3"></span><span class="lvl">Nível 3</span><h3>LLMs, RAG e agentes</h3><p>Prompts, embeddings, busca semântica, agentes e MCP.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-4"><span class="n" data-t="4"></span><span class="lvl">Nível 4</span><h3>Engenharia e MLOps</h3><p>APIs, bancos de dados, Docker, CI/CD, cloud e monitoramento.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-5"><span class="n" data-t="5"></span><span class="lvl">Nível 5</span><h3>Especialização</h3><p>Visão, NLP, séries temporais, Edge AI ou IA industrial.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
+      <a class="step" href="app.html#nivel-6"><span class="n" data-t="6"></span><span class="lvl">Nível 6</span><h3>Leitura contínua</h3><p>Aprofundamento com obras avançadas, sem prazo final.</p><span class="sicons" data-level></span><span class="go">Ver nível →</span></a>
     </div>
     <div class="rail" aria-hidden="true"><span></span></div>
   </div>
@@ -324,6 +314,7 @@ footer small{display:block;width:100%;font-size:12px}
   <small>© 2026 NEODO Soluções Inteligentes. Nomes e logos de produtos são marcas de seus donos; ícones do projeto gilbarbara/logos (CC0).</small>
 </div></footer>
 
+<script src="temas.js?v=16"></script>
 <script>
 (function(){
   const root=document.documentElement,btn=document.getElementById('themeBtn'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -343,9 +334,26 @@ footer small{display:block;width:100%;font-size:12px}
     ['Especialização','Visão, NLP, séries temporais, Edge AI ou IA industrial.',['opencv','pytorch','huggingface','streamlit']],
     ['Leitura contínua','Aprofundamento com obras avançadas da sua área.',['github','jupyter']]];
   const ic=l=>l.map(i=>`<img src="brand/icons/${i}.svg" alt="" loading="lazy">`).join('');
-  document.querySelectorAll('.step').forEach((st,i)=>{const b=st.querySelector('.sicons');if(b)b.innerHTML=ic(L[i][2])});
+  document.querySelectorAll('.step').forEach((st,i)=>{const b=st.querySelector('.sicons');if(b)b.innerHTML=ic(L[i][2]);const n=st.querySelector('.n');if(n)n.innerHTML=themeIcon(i)});
+  // Tecnologias: ícones clicáveis com definição
+  const T=[[['python','Python',0,'A linguagem principal da IA: scripts, análise de dados e treino de modelos.'],['jupyter','Jupyter',0,'Cadernos interativos para testar código, ver gráficos e registrar experimentos.'],['numpy','NumPy',0,'Vetores e matrizes em Python. É a base numérica de quase toda biblioteca de IA.'],['pandas','pandas',1,'Tabelas de dados em Python: ler, limpar, filtrar, juntar e agrupar.'],['git','Git',0,'Controle de versões do código. Guarda cada mudança e permite voltar atrás.'],['linux','Linux',0,'O sistema dos servidores e da nuvem: terminal, arquivos, processos e permissões.']],
+    [['pytorch','PyTorch',2,'O framework de deep learning mais usado em pesquisa e produção.'],['tensorflow','TensorFlow',2,'Framework de deep learning do Google, com o Keras para montar redes rapidamente.'],['opencv','OpenCV',2,'Visão computacional: tratar imagens e vídeo, detectar, medir e rastrear objetos.'],['huggingface','Hugging Face',2,'Repositório de modelos e datasets prontos, com a biblioteca Transformers.'],['anthropic','Claude API',3,'API dos modelos Claude para texto, análise de documentos e agentes com ferramentas.'],['langchain','LangChain',3,'Framework para montar aplicações com LLMs: RAG, memória, ferramentas e agentes.'],['openai','OpenAI API',3,'API dos modelos GPT para gerar texto, criar embeddings e chamar ferramentas.']],
+    [['fastapi','FastAPI',4,'Framework Python para criar APIs rápidas que colocam modelos em uso.'],['postgresql','PostgreSQL',1,'Banco de dados relacional. Com pgvector, também guarda embeddings para busca semântica.'],['docker','Docker',4,'Empacota a aplicação e suas dependências num contêiner que roda igual em qualquer máquina.'],['kubernetes','Kubernetes',4,'Orquestra contêineres em produção: escala, atualiza e reinicia serviços sozinho.'],['aws','AWS',4,'A nuvem da Amazon para guardar dados, treinar e publicar modelos.'],['github','GitHub',4,'Hospeda repositórios, revisões de código e automações de CI/CD.']]];
+  const cloud=document.getElementById('cloud'),pop=document.getElementById('tpop'),tech=cloud.parentElement;let openB=null;
+  cloud.innerHTML=T.map(r=>`<div class="row">${r.map(([k,n])=>`<button type="button" class="bub solid" data-k="${k}" aria-label="${n}" aria-expanded="false" aria-controls="tpop"><img src="brand/icons/${k}.svg" alt=""></button>`).join('')}</div>`).join('');
+  const TD=Object.fromEntries(T.flat().map(t=>[t[0],t]));
+  function closePop(){if(!openB)return;openB.setAttribute('aria-expanded','false');pop.hidden=true;openB=null}
+  function openPop(b){const [k,n,lv,d]=TD[b.dataset.k];if(openB===b){closePop();return}closePop();openB=b;b.setAttribute('aria-expanded','true');
+    pop.innerHTML=`<button type="button" class="x" aria-label="Fechar">×</button><div class="th"><img src="brand/icons/${k}.svg" alt=""><h3 id="tpop-h">${n}</h3></div><p>${d}</p><a href="app.html#nivel-${lv}">${themeIcon(lv)}Aparece no nível ${lv}: ${L[lv][0]} →</a>`;
+    pop.hidden=false;const tr=tech.getBoundingClientRect(),br=b.getBoundingClientRect(),w=pop.offsetWidth,cx=br.left+br.width/2-tr.left;
+    const left=Math.max(16,Math.min(tr.width-w-16,cx-w/2));pop.style.left=left+'px';const h=pop.offsetHeight;let top=br.bottom-tr.top+14;const up=top+h>tr.height-8;if(up)top=br.top-tr.top-14-h;pop.classList.toggle('up',up);pop.style.top=top+'px';pop.style.setProperty('--ax',(cx-left)+'px');
+    pop.querySelector('.x').onclick=()=>{const bb=openB;closePop();bb&&bb.focus()}}
+  cloud.addEventListener('click',e=>{const b=e.target.closest('.bub');if(b)openPop(b)});
+  document.addEventListener('click',e=>{if(openB&&!pop.contains(e.target)&&!cloud.contains(e.target))closePop()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openB){const bb=openB;closePop();bb.focus()}});
+  let lw=innerWidth;addEventListener('resize',()=>{if(innerWidth!==lw){lw=innerWidth;closePop()}});
   const ring=document.getElementById('ring'),stage=document.getElementById('stage'),N=L.length,step=360/N;
-  ring.innerHTML=L.map((l,i)=>`<a class="lv" href="app.html#nivel-${i}" aria-label="Nível ${i}: ${l[0]}"><span class="n">${i}</span><h3>${l[0]}</h3><p>${l[1]}</p><span class="ics">${ic(l[2])}</span><span class="go">Abrir nível <i>→</i></span></a>`).join('');
+  ring.innerHTML=L.map((l,i)=>`<a class="lv" href="app.html#nivel-${i}" aria-label="Nível ${i}: ${l[0]}"><span class="n">${themeIcon(i)}</span><span class="lvl">Nível ${i}</span><h3>${l[0]}</h3><p>${l[1]}</p><span class="ics">${ic(l[2])}</span><span class="go">Abrir nível <i>→</i></span></a>`).join('');
   const cards=[...ring.children];let cur=0,timer=null,paused=false;
   function radius(){return Math.round((ring.offsetWidth/2)/Math.tan(Math.PI/N))+40}
   function place(){const R=radius();cards.forEach((c,i)=>c.style.transform=`rotateY(${i*step}deg) translateZ(${R}px)`);show()}

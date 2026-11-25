@@ -51,9 +51,11 @@
 
   // Ícones das tecnologias de cada nível (lista da trilha)
   const LEVEL_ICONS=[['python','git','linux','jupyter','numpy'],['pandas','numpy','postgresql','jupyter'],['pytorch','tensorflow','opencv'],['openai','huggingface','langchain','anthropic'],['fastapi','docker','kubernetes','aws','postgresql'],['opencv','pytorch','huggingface','streamlit'],[]];
-  function levelIcons(root){root.querySelectorAll('.level').forEach(row=>{if(row.querySelector('.lvl-icons'))return;const n=parseInt(row.querySelector('.num')?.textContent,10);const list=LEVEL_ICONS[n];if(!list||!list.length)return;
+  function levelIcons(root){root.querySelectorAll('.level').forEach(row=>{if(row.dataset.lvi)return;row.dataset.lvi='1';const n=parseInt(row.querySelector('.num')?.textContent,10);const txt=row.children[1];if(!txt||isNaN(n))return;
+    const st=txt.querySelector('strong');if(st&&window.themeIcon){st.classList.add('lvl-title');st.insertAdjacentHTML('afterbegin',`<span class="lvl-theme">${themeIcon(n)}</span>`)}
+    const list=LEVEL_ICONS[n];if(!list||!list.length)return;
     const box=document.createElement('span');box.className='lvl-icons';box.setAttribute('aria-hidden','true');box.innerHTML=list.map(i=>`<img src="brand/icons/${i}.svg" alt="" loading="lazy">`).join('');
-    const txt=row.children[1];if(txt)txt.append(box)})}
+    txt.append(box)})}
 
   // Ícone do tema dentro do botão de cada módulo e nível
   const G={sigma:'<path d="M18 6V4H6l6 8-6 8h12v-2"/>',fx:'<path d="M9 4c-2 0-3 1-3 3v13"/><path d="M4 11h6"/><path d="m13 11 7 9M20 11l-7 9"/>',
@@ -68,8 +70,8 @@
     'n3-m1':'openai','n3-m2':'anthropic','n3-m3':'langchain','n3-m4':'langchain','n3-m5':'huggingface','n3-m6':'g:shield',
     'n4-m1':'fastapi','n4-m2':'postgresql','n4-m3':'docker','n4-m4':'github','n4-m5':'aws','n4-m6':'g:shield',
     'n5-m1':'g:target','n5-m2':'g:book','n5-m3':'g:flask','n5-m4':'g:shield','n5-m5':'g:rocket','n5-m6':'g:doc'};
-  const LVL=['python','pandas','pytorch','langchain','docker','opencv','g:book'];
-  function iconHTML(k){if(!k)return '';if(k.startsWith('g:'))return `<svg class="bico g" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${G[k.slice(2)]}</svg>`;return `<img class="bico" src="brand/icons/${k}.svg" alt="" aria-hidden="true">`}
+  const LVL=[0,1,2,3,4,5,6].map(n=>'t:'+n);
+  function iconHTML(k){if(!k)return '';if(k.startsWith('t:'))return window.themeIcon?themeIcon(+k.slice(2),'bico g'):'';if(k.startsWith('g:'))return `<svg class="bico g" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${G[k.slice(2)]}</svg>`;return `<img class="bico" src="brand/icons/${k}.svg" alt="" aria-hidden="true">`}
   function buttonIcons(root){root.querySelectorAll('button[onclick]').forEach(b=>{if(b.dataset.ico)return;const oc=b.getAttribute('onclick')||'';let k=null;
     let m=oc.match(/go\('study','(n\d-m\d)'\)/);if(m&&b.closest('.module,.hero,.studygrid'))k=MOD[m[1]];
     if(!k){m=oc.match(/go\('level',(\d)\)/);if(m&&b.closest('.level'))k=LVL[+m[1]]}
