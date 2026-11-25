@@ -226,3 +226,10 @@ html[data-theme=light] .access-gate{background:radial-gradient(700px 420px at 50
 .lvl-icons img{width:22px;height:22px;padding:3px;border-radius:7px;background:#fff;border:1px solid var(--line);object-fit:contain;transition:transform .2s var(--ease)}
 .level:hover .lvl-icons img{transform:translateY(-2px)}
 .level:hover .lvl-icons img:nth-child(2){transition-delay:.03s}.level:hover .lvl-icons img:nth-child(3){transition-delay:.06s}.level:hover .lvl-icons img:nth-child(4){transition-delay:.09s}.level:hover .lvl-icons img:nth-child(5){transition-delay:.12s}
+button.has-ico{display:inline-flex;align-items:center;gap:8px;padding-left:10px}
+.bico{width:22px;height:22px;flex:none;object-fit:contain;border-radius:7px;background:#fff;padding:3px;box-shadow:0 0 0 1px var(--line);transition:transform .25s var(--ease)}
+.bico.g{color:var(--navy);background:color-mix(in srgb,var(--navy) 10%,#fff)}
+html:not([data-theme=light]) .bico.g{color:#1c1500;background:var(--amber)}
+.hero .bico{box-shadow:none}
+button.has-ico:hover .bico{transform:rotate(-8deg) scale(1.08)}
+.module{cursor:pointer}
