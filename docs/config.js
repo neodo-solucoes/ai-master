@@ -2,6 +2,6 @@
 window.AI_MASTER_CONFIG = {
   supabaseUrl: 'https://wuapplhifksoanrqbvqx.supabase.co',
   publishableKey: 'sb_publishable_RbzCM_59lWgzyvkIEwcdoA_-lV2t7bR',
-  enableGoogleLogin: false, // ative também o provedor no painel do Supabase
+  enableGoogleLogin: true, // ative também o provedor no painel do Supabase
   allowLocalDemo: false // acesso sempre autenticado
 };
