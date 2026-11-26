@@ -147,7 +147,7 @@ html:not([data-theme=light]) .on-dark{display:block}
 .nmark img{width:38px;height:auto}
 .brand:hover .nmark{transform:translateX(2px)}
 .brand small{font-size:11px;line-height:1.3}
-.access-card .brand{display:grid;gap:16px;justify-items:start}
+.access-card .brand{display:grid;gap:14px;justify-items:center;text-align:center}
 .gatelogo img{height:60px;width:auto}
 .gateproduct{display:grid;gap:2px;padding-left:12px;border-left:3px solid #FFBB01}
 .gateproduct strong{font-size:17px;letter-spacing:-.02em}
@@ -240,3 +240,7 @@ button.has-ico:hover .bico{transform:rotate(-8deg) scale(1.08)}
 html:not([data-theme=light]) .lvl-theme{background:rgb(255 187 1/.14);color:#FFBB01}
 .lvl-theme svg{width:18px;height:18px}
 .bico.g{stroke-width:1.8}
+
+/* Login centralizado */
+.access-card .gateproduct{padding:10px 0 0;border-left:0!important;border-top:3px solid var(--amber);justify-items:center}
+.access-card>h1,.access-card>h1+p{text-align:center}
